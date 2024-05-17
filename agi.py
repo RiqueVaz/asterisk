@@ -109,15 +109,15 @@ class AGI:
             if PY3:
                 if type(line) is bytes: line = line.decode('utf8')
             try:
-                key, data = line.split(':')
+                key = line.split(':')
                 key = key.strip()
                 data = data.strip()
 
                 if 'agi_' != key[:4]:
                     continue
 
-                env[key] = data
-           except AttributeError:
+                self.env[key] = data
+            except AttributeError:
                 pass
         self.stderr.write('class AGI: self.env = ')
         self.stderr.write(pprint.pformat(self.env))
